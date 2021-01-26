@@ -1,0 +1,11 @@
+[
+    {
+        "name": "Кроссовки",
+        "description": "Да-да",
+        "image": "../media/Boots.png"
+    },
+    {
+        "name": "Воздух",
+        "description": "Ммм, как вкусно"
+    }
+]

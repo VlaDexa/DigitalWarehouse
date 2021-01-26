@@ -1,0 +1,85 @@
+html {
+    background-color: rgb(36, 36, 36);
+    color: white;
+}
+
+.main {
+    display: grid;
+    padding-left: 8%;
+    padding-right: 8%;
+    grid-template-columns: 175% 175% 175% 175%;
+}
+
+.header {
+    margin-left: 10vw;
+    height: 4vh;
+    width: 80vw;
+    padding-left: 5%;
+    border-color: aliceblue;
+    border: solid 0px;
+    border-bottom-width: 3px;
+}
+
+.article {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 10%;
+    background-color: rgb(255, 252, 249);
+    color: black;
+    text-align: center;
+    border-radius: 0vw 0vw 3vw 3vw;
+    max-height: fit-content;
+    overflow: hidden;
+}
+
+.article:hover {
+    animation: article-focus 0.25s ease-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes article-focus {
+    from {
+        border: solid 0vw red
+    }
+
+    to {
+        border: solid 0.3vw red;
+    }
+}
+
+.name {
+    font-size: 2vw;
+}
+
+.description {
+    font-size: 1vw;
+    overflow-wrap: break-word;
+}
+
+.image {
+    width: 100%;
+}
+
+@media (min-aspect-ratio: 4/3) {
+    .main {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .main {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media (max-aspect-ratio: 2/3) {
+    .main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-aspect-ratio: 21/9) {
+    .main {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+}
