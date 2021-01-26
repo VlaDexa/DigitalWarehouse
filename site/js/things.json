@@ -1,11 +1,1 @@
-[
-    {
-        "name": "Кроссовки",
-        "description": "Да-да",
-        "image": "../media/Boots.png"
-    },
-    {
-        "name": "Воздух",
-        "description": "Ммм, как вкусно"
-    }
-]
+[{"name":"Кроссовки","description":"Да-да","image":"/media/Boots.png"},{"name":"Воздух","description":"Ммм, как вкусно"},{"name":"Картошка","description":"Пойдём копать антошку","image":""}]

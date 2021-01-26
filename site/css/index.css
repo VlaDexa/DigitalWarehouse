@@ -57,7 +57,8 @@ html {
 }
 
 .image {
-    width: 100%;
+    min-width: 80%;
+    max-width: 100%;
 }
 
 @media (min-aspect-ratio: 4/3) {
