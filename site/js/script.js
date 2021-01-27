@@ -7,7 +7,7 @@ fetch(`${window.location.href}css/index.css`).then((res) => {
     });
 });
 //Функция для создания боксов
-const CreateDIV = async (name, description, image) => {
+const CreateDIV = async (name, description, size, image) => {
     let node = document.getElementsByClassName("main")[0];
     let div = node.appendChild(document.createElement("div"));
     div.className = "article";
@@ -25,6 +25,10 @@ const CreateDIV = async (name, description, image) => {
     createdDescription.className = "description";
     createdDescription.textContent = description;
     div.appendChild(createdDescription);
+    let createdSize = document.createElement("p");
+    createdSize.className = "size"
+    createdSize.textContent = size
+    div.appendChild(createdSize)
 };
 const things = fetch(`${window.location.href}things`).then(async (response) => {
     return JSON.parse(await response.text()); //Преобразую полученное в текст и потом возвращаю объект
@@ -32,7 +36,7 @@ const things = fetch(`${window.location.href}things`).then(async (response) => {
 window.onload = async () => {
     things.then((thingis) => {
         thingis.forEach((element) => {
-            CreateDIV(element.name, element.description, element.image); //Для каждого объекта из массива создаю бокс
+            CreateDIV(element.name, element.description, element.size, element.image); //Для каждого объекта из массива создаю бокс
         });
     });
     // Функция поиска

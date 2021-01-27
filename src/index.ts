@@ -34,7 +34,7 @@ app.get("/add.html", (_, res) => {
 
 app.put('/add', (req, res) => {
     try {
-        let json: { name: string, description: string, image?: string }[] = JSON.parse(new TextDecoder().decode(Deno.readFileSync("./site/js/things.json")))
+        let json: { name: string, description: string, size: number, image?: string }[] = JSON.parse(new TextDecoder().decode(Deno.readFileSync("./site/js/things.json")))
         json.push(req.body)
         res.send("SuccAss")
         Deno.writeFile("./site/js/things.json", new TextEncoder().encode(JSON.stringify(json)))

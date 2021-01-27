@@ -14,7 +14,7 @@ function isUrl(string) {
     catch (_) {
         return false;
     }
-    return true;
+
 }
 window.onload = () => {
     document.getElementById("send")?.addEventListener("click", () => {
@@ -22,20 +22,14 @@ window.onload = () => {
         let description = document.getElementById('new_description');
         let image = document.getElementById('new_image');
         let output = document.getElementById("output");
-        if (!name.value || !description.value) {
+        let size = document.getElementById("new_size")
+        if (name.value == "" || description.value == "" || size.value == "") {
             if (output) {
                 output.textContent = "Заполни все обязательные поля";
             }
             return;
         }
-        let body;
-        if (image) {
-            body = { name: name.value, description: description.value, image: image.value };
-        }
-        else {
-            body = { name: name.value, description: description.value };
-        }
-        console.log(JSON.stringify(body));
+        const body = (image) ? { name: name.value, description: description.value, size: size.value, image: image.value } : { name: name.value, description: description.value, size: size.value }
         fetch(`${window.location.href}/../add`, {
             method: "PUT",
             headers: {
@@ -44,16 +38,7 @@ window.onload = () => {
             body: JSON.stringify(body)
         }).then((response) => {
             response.text().then(text => {
-                if (text == "SuccAss") {
-                    if (output) {
-                        output.textContent = "Отправлено";
-                    }
-                }
-                else {
-                    if (output) {
-                        output.textContent = "Ошибка";
-                    }
-                }
+                output.textContent = (text == "SuccAss") ? "Отправлено" : "Ошибка";
             });
         });
     });
