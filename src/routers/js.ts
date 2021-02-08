@@ -1,4 +1,4 @@
-import { Router } from "https://deno.land/x/opine@1.1.0/mod.ts";
+import { Router } from "https://deno.land/x/opine/mod.ts";
 let js = Router()
 
 js.get("/script.js", (_, res) => {

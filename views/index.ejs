@@ -4,8 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Склад" content="Склад">
     <script src="js/script.js"></script>
     <title>Склад</title>
+    <style>
+        <%=css %>
+    </style>
 </head>
 
 <body>
@@ -15,7 +19,9 @@
                 style="margin-left: 1%; margin-bottom: 2vh; width: 5vw; font-size:0.75vw;">Добавить
                 объект</button></a>
     </div>
-    <div class="main"></div>
+    <div class="main">
+        <input type="file" id="file" accept=".csv">
+    </div>
 </body>
 
 </html>
