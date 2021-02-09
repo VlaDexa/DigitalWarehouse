@@ -24,7 +24,7 @@ export const GetScheme = async () => {
 
 export const GetItems = async (parsable:string) => {
     const splitBySemicolon = (elem: string) => elem.split(";")
-    const items = parsable.split("\r\n")
+    const items = parsable.split(parsable.includes("\r") ? "\r\n" : "\n")
         .map(splitBySemicolon).slice(1, -1);
 
     let scheme: { name: string, size: string, weight: string, uuid: string }[] = []
@@ -32,6 +32,5 @@ export const GetItems = async (parsable:string) => {
         scheme.push({ name: element[1], size: element[2], weight: element[3], uuid: v4.generate() })
     });
 
-    console.log(scheme)
     return scheme
 }

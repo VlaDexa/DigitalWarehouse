@@ -18,19 +18,31 @@ const CreateDIV = async (name, size, uuid) => {
     createdUUID.className = "uuid";
     createdUUID.textContent = uuid;
     div.appendChild(createdUUID)
+
+    let createdButton = document.createElement("button")
+    createdButton.classname = "article_button"
+    createdButton.textContent = "Послать на склад"
+    createdButton.addEventListener("click", (event) => {
+        let button = event.explicitOriginalTarget
+    })
+    div.appendChild(createdButton)
 }
 
 window.onload = () => {
     const file = document.getElementById("file")
     file.addEventListener("change", () => {
-        let reader = new FileReader()
+        let reader = new FileReader();
+        reader.readAsText(file.files[0])
+
         reader.onload = () => {
-            let result = reader.result
-            console.log(result)
+            let result = {body: reader.result}
 
             fetch(`${window.location.href}things`, {
                 method: "PUT",
-                body: JSON.stringify({ body: result })
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(result)
             }).then(async (recieved) => {
                 let response = await recieved.json()
                 if (response.err) {
@@ -42,7 +54,6 @@ window.onload = () => {
                 })
             })
         }
-        reader.readAsText(file.files[0])
     })
 
     // Функция поиска

@@ -1,3 +1,4 @@
+//Как же я ненавижу веб програмирование
 import { json, opine, serveStatic } from "https://deno.land/x/opine/mod.ts";
 import { renderFileToString } from "https://deno.land/x/dejs/mod.ts";
 import { css, js, media } from "./routers/mod.ts"
@@ -47,9 +48,13 @@ app.get("/things", (_, res) => {
 
 app.put("/things", (req, res) => {
     try {
-        console.log(JSON.stringify(req.body))
-        GetItems(req.body.body).then((el) => { items = el })
-        res.send(items)
+        console.log(req.body)
+
+        GetItems(req.body.body).then((el) => { 
+            items = el;
+            console.log(el)
+            res.send(JSON.stringify(el))
+        }).catch(err => console.error(err))
     } catch (err) {
         console_log(err)
         res.send('{"err": "Error"}')
@@ -69,7 +74,7 @@ app.put('/add', (req, res) => {
         res.send("SuccAss")
         Deno.writeFile("./views/js/things.json", new TextEncoder().encode(JSON.stringify(json)))
     } catch (e) {
-        Deno.stderr.write(new TextEncoder().encode(e))
+        console_log(e)
         res.send("EpicFail.gif")
     }
 })
