@@ -24,6 +24,25 @@ const CreateDIV = async (name, size, uuid) => {
     createdButton.textContent = "Послать на склад"
     createdButton.addEventListener("click", (event) => {
         let button = event.explicitOriginalTarget
+        let children = Array.from(button.parentElement.childNodes).slice(1,-1)
+        let textArray = []
+
+        children.forEach(element => {
+            textArray.push(element.textContent)
+        });
+        
+        fetch(`${window.location.href}warehouse`, {
+            method:"PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(textArray)
+        }).then((recieved) => {
+            recieved.text().then((text)=> {
+                button.textContent = (text === "Remote")?"Отправить на удалённый сайт":text;
+                button.disabled = true
+            })
+        });
     })
     div.appendChild(createdButton)
 }

@@ -1,19 +1,31 @@
 import { v4 } from "https://deno.land/std/uuid/mod.ts";
 
-class Scheme {
-    size: {
-        size_x: number,
-        size_y: number,
-        size_z: number
-    }
-    merged: string[][]
+export class Scheme {
+    "1": string[][]
+    "2": string[][]
+    "4": string[][]
 
     constructor(response: {
-        size: { size_x: number, size_y: number, size_z: number }, merged: any[][]
+        size: { size_x: number, size_y: number, size_z: number }, merged: string[][]
     }) {
-        // Ни диструктаризировать, ни просто присвоить this. Придёться наслаждаться этой красотой
-        this.size = response.size
-        this.merged = response.merged
+        let merged = response.merged
+        this[1] = []
+        this[2] = []
+        this[4] = []
+
+        merged.forEach(element => {
+            switch (element.length) {
+                case 1:
+                    this["1"].push(element)
+                    break;
+                case 2:
+                    this["2"].push(element)
+                    break;
+                case 4:
+                    this["4"].push(element)
+                    break;
+            }
+        });
     }
 }
 

@@ -56,8 +56,8 @@ html {
     overflow-wrap: break-word;
 }
 
-.image {
-    size: 80%
+.file {
+    margin-top: 5%;
 }
 
 @media (min-aspect-ratio: 4/3) {
