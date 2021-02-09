@@ -58,6 +58,8 @@ app.put("/warehouse", (req, res) => {
   let textArray: string[] = req.body;
   let size = textArray[0].split("*").map(Number);
 
+  if (size[0]> 2000 || size[1]> 2000 || size[2]> 2000) res.send("Remote")
+
   if (size[1] > 1000 && size[0] > 1000) {
     if (scheme["4"].length > 0) {
       res.send(JSON.stringify(scheme["4"].shift()));

@@ -23,7 +23,7 @@ const CreateDIV = async (name, size, uuid) => {
     createdButton.classname = "article_button"
     createdButton.textContent = "Послать на склад"
     createdButton.addEventListener("click", (event) => {
-        let button = event.explicitOriginalTarget
+        let button = createdButton
         let children = Array.from(button.parentElement.childNodes).slice(1,-1)
         let textArray = []
 
@@ -39,7 +39,7 @@ const CreateDIV = async (name, size, uuid) => {
             body: JSON.stringify(textArray)
         }).then((recieved) => {
             recieved.text().then((text)=> {
-                button.textContent = (text === "Remote")?"Отправить на удалённый сайт":text;
+                button.textContent = (text === "Remote")?"Отправить на удалённый склад":JSON.stringify(text).join(", ");
                 button.disabled = true
             })
         });
