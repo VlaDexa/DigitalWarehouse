@@ -39,7 +39,7 @@ const CreateDIV = async (name, size, uuid) => {
             body: JSON.stringify(textArray)
         }).then((recieved) => {
             recieved.text().then((text)=> {
-                button.textContent = (text === "Remote")?"Отправить на удалённый склад":JSON.stringify(text).join(", ");
+                button.textContent = (text === "Remote")?"Отправить на удалённый склад":JSON.parse(text).join(", ");
                 button.disabled = true
             })
         });
