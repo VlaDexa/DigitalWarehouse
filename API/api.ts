@@ -1,5 +1,8 @@
 import { v4 } from "https://deno.land/std/uuid/mod.ts";
 
+/**
+ * Разметка склада
+ */
 export class Scheme {
     "1": string[][]
     "2": string[][]
@@ -29,19 +32,43 @@ export class Scheme {
     }
 }
 
+/**
+ * Класс объекта, который можно поместить на склад
+ */
+class Object {
+    name: string
+    size: string
+    weight: string
+    uuid: string
+
+    constructor(name: string, size: string, weight: string) {
+        this.name = name
+        this.size = size
+        this.weight = weight
+        this.uuid = v4.generate()
+    }
+}
+
+/**
+ * Получает разметку склада с сервера кейса
+ */
 export const GetScheme = async () => {
     const body = await fetch("http://127.0.0.1:5000/scheme")
     return new Scheme(await body.json())
 }
 
-export const GetItems = async (parsable:string) => {
+/**
+ * Превращает строку в объект, который можно поместить на склад
+ * @param parsable - строка полученная из файла
+ */
+export const GetItems = async (parsable: string) => {
     const splitBySemicolon = (elem: string) => elem.split(";")
     const items = parsable.split(parsable.includes("\r") ? "\r\n" : "\n")
         .map(splitBySemicolon).slice(1, -1);
 
-    let scheme: { name: string, size: string, weight: string, uuid: string }[] = []
+    let scheme: Object[] = []
     items.forEach(element => {
-        scheme.push({ name: element[1], size: element[2], weight: element[3], uuid: v4.generate() })
+        scheme.push(new Object(element[1], element[2], element[3]))
     });
 
     return scheme

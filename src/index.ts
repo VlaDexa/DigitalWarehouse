@@ -50,7 +50,7 @@ app.put("/things", (req, res) => {
 app.put("/warehouse", (req, res) => {
     let textArray: string[] = req.body;
     let size = textArray[0].split("*").map(Number);
-    let status = size[0] > 2000 || size[1] > 2000 || size[2] > 2000 ? 3 : size[1] > 1000 && size[0] > 1000 ? 2 : size[0] > 1000 || size[1] > 1000 ? 1 : 0;
+    const status = size[0] > 2000 || size[1] > 2000 || size[2] > 2000 ? 3 : size[1] > 1000 && size[0] > 1000 ? 2 : size[0] > 1000 || size[1] > 1000 ? 1 : 0;
 
     switch (status) {
         case 0:
